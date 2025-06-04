@@ -24,7 +24,30 @@ initial begin
     dut.`isrc = 4;
     #10;
     $display("operation is ADD -> Rsrc1=%0d, Rsrc2=%0d, Rdst=%0d",dut.GPR[2],dut.`isrc,dut.GPR[0]);
+end
 
+// operation type = immediate(0) + mov
+initial begin
+    $display("----------------------------------------");
+    dut.IR = 0;
+    dut.`oper_type = 1;
+    dut.`rdst = 4;
+    dut.`mode = 0;
+    dut.`rsrc1 = 7;
+    #10;
+    $display("operation is MOV -> Rdst=%0d, Rsrc1=%0d",dut.GPR[4],dut.GPR[7]);
+end
+
+// operation type = immediate(1) + mov
+initial begin
+    $display("----------------------------------------");
+    dut.IR = 0;
+    dut.`oper_type = 1;
+    dut.`rdst = 4;
+    dut.`mode = 1;
+    dut.`isrc = 55;
+    #10;
+    $display("operation is MOV -> Rdst=%0d, immediate_source=%0d",dut.GPR[4],dut.`isrc);
 end
 
 endmodule
